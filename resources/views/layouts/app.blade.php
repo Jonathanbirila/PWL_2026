@@ -5,18 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Manajemen Produk & Supplier') - PWL App</title>
+    <title>@yield('title', 'Manajemen Produk & Supplier') - PWL 2026</title>
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 & Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
     <style>
         :root {
             --bs-font-sans-serif: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-            --primary-gradient: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
-            --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
-            --card-shadow-hover: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --teal-primary: #0d9488;
+            --teal-dark: #0f766e;
+            --teal-light: #f0fdfa;
+            --teal-border: #99f6e4;
+            --primary-gradient: linear-gradient(135deg, #0d9488 0%, #0f766e 100%);
         }
 
         body {
@@ -28,16 +35,17 @@
             flex-direction: column;
         }
 
+        /* Navbar Styling */
         .navbar-custom {
             background-color: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 0.85rem 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            border-bottom: 2px solid #e2e8f0;
+            padding: 0.75rem 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
         }
 
         .navbar-brand {
             font-weight: 700;
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: #0f172a !important;
             letter-spacing: -0.02em;
         }
@@ -46,14 +54,14 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 38px;
-            height: 38px;
-            border-radius: 10px;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
             background: var(--primary-gradient);
             color: #ffffff;
             margin-right: 0.6rem;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 10px rgba(13, 110, 253, 0.3);
+            font-size: 1.05rem;
+            box-shadow: 0 3px 8px rgba(13, 148, 136, 0.25);
         }
 
         .nav-link {
@@ -65,13 +73,14 @@
         }
 
         .nav-link:hover {
-            color: #0d6efd;
-            background-color: #f1f5f9;
+            color: var(--teal-primary);
+            background-color: var(--teal-light);
         }
 
         .nav-link.active {
-            color: #0d6efd !important;
-            background-color: #eff6ff;
+            color: var(--teal-dark) !important;
+            background-color: var(--teal-light);
+            border: 1px solid var(--teal-border);
             font-weight: 600;
         }
 
@@ -80,38 +89,29 @@
             padding: 2rem 0;
         }
 
+        /* Card Custom */
         .card-custom {
             border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            box-shadow: var(--card-shadow);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.04);
             background: #ffffff;
-            transition: box-shadow 0.2s ease;
-        }
-
-        .card-custom:hover {
-            box-shadow: var(--card-shadow-hover);
-        }
-
-        .hover-primary {
-            transition: color 0.2s ease;
-        }
-
-        .hover-primary:hover {
-            color: #0d6efd !important;
         }
 
         .card-header-custom {
-            background: transparent;
+            background: #ffffff;
             border-bottom: 1px solid #f1f5f9;
-            padding: 1.25rem 1.5rem;
+            border-left: 4px solid var(--teal-primary);
+            padding: 1.1rem 1.35rem;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
         }
 
         .page-header {
-            margin-bottom: 2rem;
+            margin-bottom: 1.75rem;
         }
 
         .page-title {
-            font-size: 1.6rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: #0f172a;
             margin-bottom: 0.25rem;
@@ -120,51 +120,69 @@
 
         .page-subtitle {
             color: #64748b;
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             margin-bottom: 0;
         }
 
-        .btn {
+        /* Teal Buttons */
+        .btn-teal {
+            background: var(--primary-gradient);
+            color: #ffffff !important;
+            border: none;
+            border-radius: 8px;
             font-weight: 500;
-            border-radius: 10px;
             padding: 0.55rem 1.15rem;
             display: inline-flex;
             align-items: center;
             gap: 0.45rem;
+            box-shadow: 0 2px 6px rgba(13, 148, 136, 0.25);
             transition: all 0.2s ease;
         }
 
-        .btn-primary {
-            background: var(--primary-gradient);
-            border: none;
-            box-shadow: 0 4px 10px rgba(13, 110, 253, 0.25);
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #0b5ed7 0%, #084298 100%);
-            box-shadow: 0 6px 14px rgba(13, 110, 253, 0.35);
+        .btn-teal:hover {
+            background: linear-gradient(135deg, #0f766e 0%, #115e59 100%);
             transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(13, 148, 136, 0.35);
         }
 
+        .btn-outline-teal {
+            color: var(--teal-primary);
+            border: 1px solid var(--teal-primary);
+            background: transparent;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-outline-teal:hover {
+            background-color: var(--teal-primary);
+            color: #ffffff;
+        }
+
+        .text-teal {
+            color: var(--teal-primary) !important;
+        }
+
+        /* Table Styling */
         .table-custom {
             border-collapse: separate;
             border-spacing: 0;
         }
 
         .table-custom thead th {
-            background-color: #f8fafc;
-            color: #475569;
+            background-color: #f1f5f9;
+            color: #334155;
             font-weight: 600;
             font-size: 0.82rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            padding: 0.9rem 1.25rem;
+            letter-spacing: 0.04em;
+            padding: 0.85rem 1.15rem;
             border-top: none;
             border-bottom: 1px solid #e2e8f0;
         }
 
         .table-custom tbody td {
-            padding: 1rem 1.25rem;
+            padding: 0.95rem 1.15rem;
             vertical-align: middle;
             color: #334155;
             border-bottom: 1px solid #f1f5f9;
@@ -174,26 +192,38 @@
             background-color: #f8fafc;
         }
 
+        /* Badges */
         .badge-barcode {
             font-family: ui-monospace, SFMono-Regular, monospace;
-            background-color: #f1f5f9;
-            color: #334155;
+            background-color: #f8fafc;
+            color: #0f766e;
             padding: 0.35rem 0.65rem;
             border-radius: 6px;
             font-size: 0.85rem;
             font-weight: 600;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--teal-border);
         }
 
+        .badge-supplier {
+            background-color: var(--teal-light);
+            color: var(--teal-dark);
+            border: 1px solid var(--teal-border);
+            padding: 0.3rem 0.65rem;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.85rem;
+        }
+
+        /* Form Controls */
         .form-label {
             font-weight: 600;
             color: #334155;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             margin-bottom: 0.4rem;
         }
 
         .form-control, .form-select {
-            border-radius: 10px;
+            border-radius: 8px;
             border: 1px solid #cbd5e1;
             padding: 0.65rem 0.9rem;
             font-size: 0.95rem;
@@ -201,39 +231,40 @@
         }
 
         .form-control:focus, .form-select:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+            border-color: var(--teal-primary);
+            box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
         }
 
         .input-group-text {
-            border-radius: 10px 0 0 10px;
+            border-radius: 8px 0 0 8px;
             background-color: #f8fafc;
             border-color: #cbd5e1;
             color: #64748b;
         }
 
         .input-group .form-control {
-            border-radius: 0 10px 10px 0;
+            border-radius: 0 8px 8px 0;
         }
 
         footer {
             background-color: #ffffff;
             border-top: 1px solid #e2e8f0;
             padding: 1.25rem 0;
-            font-size: 0.875rem;
+            font-size: 0.85rem;
             color: #64748b;
         }
     </style>
     @stack('styles')
 </head>
 <body>
+    <!-- Top Navigation -->
     <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+            <a class="navbar-brand d-flex align-items-center" href="{{ route('product.index') }}">
                 <span class="navbar-brand-icon">
-                    <i class="bi bi-box-seam-fill"></i>
+                    <i class="bi bi-grid-fill"></i>
                 </span>
-                <span>PWL Store</span>
+                <span>PWL Inventaris</span>
             </a>
             <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="bi bi-list fs-2 text-dark"></i>
@@ -242,12 +273,12 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('product.*') ? 'active' : '' }}" href="{{ route('product.index') }}">
-                            <i class="bi bi-box me-1"></i> Produk
+                            <i class="bi bi-box-seam me-1"></i> Data Produk
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('supplier.*') ? 'active' : '' }}" href="{{ route('supplier.index') }}">
-                            <i class="bi bi-truck me-1"></i> Supplier
+                            <i class="bi bi-truck me-1"></i> Data Supplier
                         </a>
                     </li>
                 </ul>
@@ -293,6 +324,13 @@
             @yield('content')
         </div>
     </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <span>&copy; {{ date('Y') }} PWL Inventaris • Praktikum Pemrograman Web Lanjut</span>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     @stack('scripts')

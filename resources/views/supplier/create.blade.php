@@ -6,7 +6,7 @@
 <div class="row justify-content-center">
     <div class="col-12 col-lg-7">
         <div class="mb-3">
-            <a href="{{ route('supplier.index') }}" class="btn btn-sm btn-light border text-muted">
+            <a href="{{ route('supplier.index') }}" class="btn btn-sm btn-outline-secondary">
                 <i class="bi bi-arrow-left"></i> Kembali ke Daftar Supplier
             </a>
         </div>
@@ -14,7 +14,7 @@
         <div class="card card-custom">
             <div class="card-header-custom">
                 <h5 class="mb-1 fw-bold text-dark d-flex align-items-center gap-2">
-                    <i class="bi bi-truck text-primary"></i>
+                    <i class="bi bi-truck text-teal"></i>
                     Tambah Supplier Baru
                 </h5>
                 <p class="text-muted small mb-0">Lengkapi formulir kontak dan identitas supplier rekanan.</p>
@@ -78,12 +78,13 @@
                         </div>
                     </div>
 
-                    <div class="d-flex justify-content-end align-items-center gap-2 pt-3 border-top">
-                        <a href="{{ route('supplier.index') }}" class="btn btn-light border px-4">
-                            Batal
+                    <!-- Footer Buttons: Split Layout (Left: Batal, Right: Simpan) -->
+                    <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                        <a href="{{ route('supplier.index') }}" class="btn btn-outline-secondary px-4">
+                            <i class="bi bi-x-circle me-1"></i> Batal
                         </a>
-                        <button type="submit" class="btn btn-primary px-4">
-                            <i class="bi bi-check-lg"></i> Simpan Supplier
+                        <button type="submit" class="btn btn-teal px-4">
+                            <i class="bi bi-check2-circle me-1"></i> Simpan Supplier
                         </button>
                     </div>
                 </form>

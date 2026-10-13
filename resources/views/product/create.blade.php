@@ -6,7 +6,7 @@
 <div class="row justify-content-center">
     <div class="col-12 col-lg-8">
         <div class="mb-3">
-            <a href="{{ route('product.index') }}" class="btn btn-sm btn-light border text-muted">
+            <a href="{{ route('product.index') }}" class="btn btn-sm btn-outline-secondary">
                 <i class="bi bi-arrow-left"></i> Kembali ke Daftar Produk
             </a>
         </div>
@@ -15,7 +15,7 @@
             <div class="card-header-custom d-flex align-items-center justify-content-between">
                 <div>
                     <h5 class="mb-1 fw-bold text-dark d-flex align-items-center gap-2">
-                        <i class="bi bi-box-seam text-primary"></i>
+                        <i class="bi bi-box-seam text-teal"></i>
                         Tambah Produk Baru
                     </h5>
                     <p class="text-muted small mb-0">Isi formulir berikut untuk mendaftarkan produk baru ke sistem.</p>
@@ -63,7 +63,7 @@
                     <div class="mb-3">
                         <div class="d-flex justify-content-between align-items-center mb-1">
                             <label for="supplier_id" class="form-label mb-0">Supplier / Pemasok <span class="text-danger">*</span></label>
-                            <a href="{{ route('supplier.create') }}" class="small text-primary text-decoration-none fw-medium">
+                            <a href="{{ route('supplier.create') }}" class="small text-teal text-decoration-none fw-medium">
                                 <i class="bi bi-plus"></i> Tambah Supplier Baru
                             </a>
                         </div>
@@ -136,12 +136,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-end align-items-center gap-2 pt-3 border-top">
-                        <a href="{{ route('product.index') }}" class="btn btn-light border px-4">
-                            Batal
+
+                    <!-- Footer Buttons: Split Layout (Left: Batal, Right: Simpan) -->
+                    <div class="d-flex justify-content-between align-items-center pt-3 border-top">
+                        <a href="{{ route('product.index') }}" class="btn btn-outline-secondary px-4">
+                            <i class="bi bi-x-circle me-1"></i> Batal
                         </a>
-                        <button type="submit" class="btn btn-primary px-4">
-                            <i class="bi bi-check-lg"></i> Simpan Produk
+                        <button type="submit" class="btn btn-teal px-4">
+                            <i class="bi bi-check2-circle me-1"></i> Simpan Produk
                         </button>
                     </div>
                 </form>
