@@ -24,21 +24,19 @@ Route::get('/', function () {
     return Product::with('Supplier')->get();
 });
 
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/product-create', [ProductController::class, 'create']);
-Route::post('/products', [ProductController::class, 'store']);
-Route::get('/product/{id}', [ProductController::class, 'edit']);
-Route::get('/product-detail/{id}', [ProductController::class, 'show']);
-Route::put('/product/{id}', [ProductController::class, 'update']);
-Route::delete('/product/{id}', [ProductController::class, 'destroy']);
+Route::get('products', [ProductController::class, 'index'])->name('product.index');
+Route::get('product-create', [ProductController::class, 'create'])->name('product.create');
+Route::post('products-store', [ProductController::class, 'store'])->name('product.store');
+Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
+Route::put('products/{product}', [ProductController::class, 'update'])->name('product.update');
+Route::delete('products/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
 
-Route::get('/suppliers', [SupplierController::class, 'index']);
-Route::get('/supplier-create', [SupplierController::class, 'create']);
-Route::post('/suppliers', [SupplierController::class, 'store']);
-Route::get('/supplier/{id}', [SupplierController::class, 'edit']);
-Route::get('/supplier-detail/{id}', [SupplierController::class, 'show']);
-Route::put('/supplier/{id}', [SupplierController::class, 'update']);
-Route::delete('/supplier/{id}', [SupplierController::class, 'destroy']);
+Route::get('suppliers', [SupplierController::class, 'index'])->name('supplier.index');
+Route::get('supplier-create', [SupplierController::class, 'create'])->name('supplier.create');
+Route::post('supplier-store', [SupplierController::class, 'store'])->name('supplier.store');
+Route::get('suppliers/{supplier}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
+Route::put('suppliers/{supplier}', [SupplierController::class, 'update'])->name('supplier.update');
+Route::delete('suppliers/{supplier}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
 Route::get('/transactions', [TransactionController::class, 'index']);
 Route::get('/transaction-create', [TransactionController::class, 'create']);

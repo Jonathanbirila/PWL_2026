@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Product;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -11,8 +12,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-
-        return view('products.index', ['products']);
+        $gets = Product::with('supplier')->latest()->get();
+        return view('product.index', compact('gets'));
     }
 
     /**
@@ -20,7 +21,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        $supp = Supplier::all();
+        return view('product.create', compact('supp'));
     }
 
     /**
@@ -28,39 +30,64 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // Product::create($request)
+        $request->validate([
+            'barcode_number' => 'required|unique:products,barcode_number',
+            'product_name' => 'required',
+            'buy_price' => 'required|numeric',
+            'sell_price' => 'required|numeric',
+            'supplier_id' => 'required|exists:suppliers,id',
+        ]);
+
+        Product::create($request->all());
+
+        return redirect()->route('product.index')
+            ->with('success', 'Produk berhasil ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Product $product)
     {
-        return view('products.show', ['product']);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Product $product)
     {
-        return view('products.update', ['product']);
+        $supp = Supplier::all();
+        return view('product.edit', compact('product', 'supp'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        // Product::update($request)
-        // ->where()
+        $request->validate([
+            'barcode_number' => 'required|unique:products,barcode_number,' . $product->id,
+            'product_name' => 'required',
+            'buy_price' => 'required|numeric|min:0',
+            'sell_price' => 'required|numeric|min:0',
+            'supplier_id' => 'required|exists:suppliers,id',
+        ]);
+
+        $product->update($request->all());
+
+        return redirect()->route('product.index')
+            ->with('success', 'Produk berhasil diperbarui!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
-        //Produc::where() -> delete()
+        $product->delete();
+
+        return redirect()->route('product.index')
+            ->with('success', 'Produk berhasil dihapus!');
     }
 }
