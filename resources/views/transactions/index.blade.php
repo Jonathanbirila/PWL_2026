@@ -15,36 +15,6 @@
     </div>
 </div>
 
-<!-- Header Statistik Mini -->
-<div class="row g-3 mb-4">
-    <div class="col-md-6 col-lg-4">
-        <div class="card card-custom p-3 bg-white border-start border-4 border-teal">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <span class="text-muted small">Total Keseluruhan Transaksi</span>
-                    <h4 class="fw-bold mb-0 text-dark">{{ $totalTransactions }} Transaksi</h4>
-                </div>
-                <div class="rounded-3 p-2 bg-teal-light text-teal fs-3">
-                    <i class="bi bi-receipt"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6 col-lg-4">
-        <div class="card card-custom p-3 bg-white border-start border-4 border-success">
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <span class="text-muted small">Total Akumulasi Nilai Transaksi</span>
-                    <h4 class="fw-bold mb-0 text-success">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</h4>
-                </div>
-                <div class="rounded-3 p-2 bg-success-subtle text-success fs-3">
-                    <i class="bi bi-cash-coin"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="card card-custom">
     <div class="card-header-custom d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
         <div class="fw-bold text-dark">
@@ -72,23 +42,23 @@
             </div>
         @else
             <div class="table-responsive">
-                <table class="table table-custom mb-0">
+                <table class="table table-custom table-hover align-middle mb-0">
                     <thead>
                         <tr>
-                            <th>No</th>
+                            <th class="text-center" style="width: 50px;">No</th>
                             <th>No. Invoice</th>
                             <th>Pembeli</th>
                             <th>Tanggal & Waktu</th>
                             <th>Tipe</th>
                             <th>Jumlah Item</th>
                             <th>Total Belanja</th>
-                            <th class="text-end">Aksi</th>
+                            <th class="text-center" style="width: 170px;">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($transactions as $index => $trx)
                             <tr>
-                                <td>{{ $transactions->firstItem() + $index }}</td>
+                                <td class="text-center text-muted fw-semibold">{{ $transactions->firstItem() + $index }}</td>
                                 <td>
                                     <span class="fw-bold text-teal font-monospace">{{ $trx->invoice_number }}</span>
                                 </td>
@@ -117,19 +87,21 @@
                                 <td class="fw-bold text-dark">
                                     Rp {{ number_format($trx->subtotal, 0, ',', '.') }}
                                 </td>
-                                <td class="text-end">
-                                    <div class="btn-group btn-group-sm">
-                                        <a href="{{ route('transactions.show', $trx->id) }}" class="btn btn-outline-teal"
+                                <td class="text-center">
+                                    <div class="d-inline-flex gap-1">
+                                        <a href="{{ route('transactions.show', $trx->id) }}"
+                                            class="btn btn-sm btn-outline-teal px-2 py-1"
                                             title="Lihat Detail Nota">
-                                            <i class="bi bi-eye"></i> Detail
+                                            <i class="bi bi-eye me-1"></i>Detail
                                         </a>
                                         <form action="{{ route('transactions.destroy', $trx->id) }}" method="POST"
                                             onsubmit="return confirm('Apakah Anda yakin ingin menghapus transaksi {{ $trx->invoice_number }}?');"
-                                            class="d-inline">
+                                            class="d-inline m-0">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger" title="Hapus Transaksi">
-                                                <i class="bi bi-trash"></i>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger px-2 py-1"
+                                                title="Hapus Transaksi">
+                                                <i class="bi bi-trash3 me-1"></i>Hapus
                                             </button>
                                         </form>
                                     </div>
@@ -149,4 +121,3 @@
     </div>
 </div>
 @endsection
-

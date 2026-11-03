@@ -18,83 +18,6 @@
     </div>
 </div>
 
-<!-- Statistik Cards -->
-<div class="row g-3 mb-4">
-    <div class="col-sm-6 col-lg-3">
-        <div class="card card-custom p-3 border-start border-4 border-teal border-0">
-            <div class="d-flex align-items-center justify-content-between">
-                <div>
-                    <span class="text-muted small text-uppercase fw-semibold">Total Produk</span>
-                    <h3 class="fw-bold mb-0 text-dark">{{ $totalProducts }}</h3>
-                </div>
-                <div class="rounded-3 p-3 bg-teal-light text-teal fs-4">
-                    <i class="bi bi-box-seam"></i>
-                </div>
-            </div>
-            <div class="mt-2 pt-2 border-top">
-                <a href="{{ route('product.index') }}" class="small text-teal text-decoration-none fw-semibold">
-                    Kelola Produk &rarr;
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-6 col-lg-3">
-        <div class="card card-custom p-3 border-start border-4 border-primary border-0">
-            <div class="d-flex align-items-center justify-content-between">
-                <div>
-                    <span class="text-muted small text-uppercase fw-semibold">Total Supplier</span>
-                    <h3 class="fw-bold mb-0 text-dark">{{ $totalSuppliers }}</h3>
-                </div>
-                <div class="rounded-3 p-3 bg-primary-subtle text-primary fs-4">
-                    <i class="bi bi-truck"></i>
-                </div>
-            </div>
-            <div class="mt-2 pt-2 border-top">
-                <a href="{{ route('supplier.index') }}" class="small text-primary text-decoration-none fw-semibold">
-                    Kelola Supplier &rarr;
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-6 col-lg-3">
-        <div class="card card-custom p-3 border-start border-4 border-success border-0">
-            <div class="d-flex align-items-center justify-content-between">
-                <div>
-                    <span class="text-muted small text-uppercase fw-semibold">Total Transaksi</span>
-                    <h3 class="fw-bold mb-0 text-dark">{{ $totalTransactions }}</h3>
-                </div>
-                <div class="rounded-3 p-3 bg-success-subtle text-success fs-4">
-                    <i class="bi bi-receipt"></i>
-                </div>
-            </div>
-            <div class="mt-2 pt-2 border-top">
-                <a href="{{ route('transactions.index') }}" class="small text-success text-decoration-none fw-semibold">
-                    Lihat Transaksi &rarr;
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-6 col-lg-3">
-        <div class="card card-custom p-3 border-start border-4 border-warning border-0">
-            <div class="d-flex align-items-center justify-content-between">
-                <div>
-                    <span class="text-muted small text-uppercase fw-semibold">Total Pendapatan</span>
-                    <h4 class="fw-bold mb-0 text-dark">Rp {{ number_format($totalRevenue, 0, ',', '.') }}</h4>
-                </div>
-                <div class="rounded-3 p-3 bg-warning-subtle text-warning fs-4">
-                    <i class="bi bi-cash-stack"></i>
-                </div>
-            </div>
-            <div class="mt-2 pt-2 border-top">
-                <span class="small text-muted">{{ $totalCustomers }} Akun Pembeli</span>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="row g-4">
     <!-- Transaksi Penjualan Terbaru -->
     <div class="col-lg-7">
@@ -115,13 +38,13 @@
                     </div>
                 @else
                     <div class="table-responsive">
-                        <table class="table table-custom mb-0">
+                        <table class="table table-custom table-hover align-middle mb-0">
                             <thead>
                                 <tr>
                                     <th>No Invoice</th>
                                     <th>Pembeli</th>
                                     <th>Total</th>
-                                    <th>Aksi</th>
+                                    <th class="text-center" style="width: 100px;">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -139,9 +62,9 @@
                                         <td class="fw-bold text-teal">
                                             Rp {{ number_format($trx->subtotal, 0, ',', '.') }}
                                         </td>
-                                        <td>
-                                            <a href="{{ route('transactions.show', $trx->id) }}" class="btn btn-sm btn-outline-teal">
-                                                <i class="bi bi-eye"></i> Detail
+                                        <td class="text-center">
+                                            <a href="{{ route('transactions.show', $trx->id) }}" class="btn btn-sm btn-outline-teal px-2 py-1">
+                                                <i class="bi bi-eye me-1"></i>Detail
                                             </a>
                                         </td>
                                     </tr>
@@ -193,4 +116,3 @@
     </div>
 </div>
 @endsection
-
