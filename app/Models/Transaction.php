@@ -9,18 +9,32 @@ class Transaction extends Model
     protected $table = "transactions";
     protected $guarded = ['id'];
     public $timestamps = true;
+
     protected $fillable = [
         'invoice_number',
+        'user_id',
         'supplier_id',
         'transaction_type',
         'subtotal'
     ];
 
-    public function transactionDetail() {
+    public function details()
+    {
         return $this->hasMany(TransactionDetail::class, 'transaction_id', 'id');
     }
 
-    public function supplier() {
+    public function transactionDetail()
+    {
+        return $this->hasMany(TransactionDetail::class, 'transaction_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function supplier()
+    {
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }
 }

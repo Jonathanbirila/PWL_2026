@@ -9,6 +9,7 @@ class TransactionDetail extends Model
     protected $table = "transaction_details";
     protected $guarded = ['id'];
     public $timestamps = true;
+
     protected $fillable = [
         'transaction_id',
         'product_id',
@@ -16,11 +17,13 @@ class TransactionDetail extends Model
         'price'
     ];
 
-    public function Product() {
+    public function product()
+    {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 
-    public function Transaction() {
+    public function transaction()
+    {
         return $this->belongsTo(Transaction::class, 'transaction_id', 'id');
     }
 }
