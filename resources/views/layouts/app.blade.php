@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Manajemen Produk & Supplier') - PWL 2026</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
     <!-- Bootstrap 5 & Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    
+
     <style>
         :root {
             --bs-font-sans-serif: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -222,7 +225,8 @@
             margin-bottom: 0.4rem;
         }
 
-        .form-control, .form-select {
+        .form-control,
+        .form-select {
             border-radius: 8px;
             border: 1px solid #cbd5e1;
             padding: 0.65rem 0.9rem;
@@ -230,7 +234,8 @@
             transition: all 0.2s ease;
         }
 
-        .form-control:focus, .form-select:focus {
+        .form-control:focus,
+        .form-select:focus {
             border-color: var(--teal-primary);
             box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
         }
@@ -256,6 +261,7 @@
     </style>
     @stack('styles')
 </head>
+
 <body>
     <!-- Top Navigation -->
     <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
@@ -266,18 +272,22 @@
                 </span>
                 <span>PWL Inventaris</span>
             </a>
-            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <i class="bi bi-list fs-2 text-dark"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('product.*') ? 'active' : '' }}" href="{{ route('product.index') }}">
+                        <a class="nav-link {{ request()->routeIs('product.*') ? 'active' : '' }}"
+                            href="{{ route('product.index') }}">
                             <i class="bi bi-box-seam me-1"></i> Data Produk
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('supplier.*') ? 'active' : '' }}" href="{{ route('supplier.index') }}">
+                        <a class="nav-link {{ request()->routeIs('supplier.*') ? 'active' : '' }}"
+                            href="{{ route('supplier.index') }}">
                             <i class="bi bi-truck me-1"></i> Data Supplier
                         </a>
                     </li>
@@ -290,16 +300,18 @@
     <main class="main-content">
         <div class="container">
             <!-- Flash Message Alerts -->
-            @if(session('success'))
-                <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm rounded-3 border-0 mb-4" role="alert">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show d-flex align-items-center shadow-sm rounded-3 border-0 mb-4"
+                    role="alert">
                     <i class="bi bi-check-circle-fill fs-5 text-success me-2"></i>
                     <div>{{ session('success') }}</div>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
 
-            @if(session('error'))
-                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center shadow-sm rounded-3 border-0 mb-4" role="alert">
+            @if (session('error'))
+                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center shadow-sm rounded-3 border-0 mb-4"
+                    role="alert">
                     <i class="bi bi-exclamation-triangle-fill fs-5 text-danger me-2"></i>
                     <div>{{ session('error') }}</div>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -307,7 +319,8 @@
             @endif
 
             @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-3 border-0 mb-4" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show shadow-sm rounded-3 border-0 mb-4"
+                    role="alert">
                     <div class="d-flex align-items-center mb-1">
                         <i class="bi bi-exclamation-circle-fill fs-5 me-2"></i>
                         <strong>Terdapat beberapa kesalahan input:</strong>
@@ -332,7 +345,10 @@
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
     @stack('scripts')
 </body>
+
 </html>

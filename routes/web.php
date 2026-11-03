@@ -19,11 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    // return view('welcome');
-    return Product::with('Supplier')->get();
-});
-
+Route::get('/', [ProductController::class, 'index']);
 Route::get('products', [ProductController::class, 'index'])->name('product.index');
 Route::get('product-create', [ProductController::class, 'create'])->name('product.create');
 Route::post('products-store', [ProductController::class, 'store'])->name('product.store');
@@ -38,19 +34,19 @@ Route::get('suppliers/{supplier}/edit', [SupplierController::class, 'edit'])->na
 Route::put('suppliers/{supplier}', [SupplierController::class, 'update'])->name('supplier.update');
 Route::delete('suppliers/{supplier}', [SupplierController::class, 'destroy'])->name('supplier.destroy');
 
-Route::get('/transactions', [TransactionController::class, 'index']);
-Route::get('/transaction-create', [TransactionController::class, 'create']);
-Route::post('/transactions', [TransactionController::class, 'store']);
-Route::get('/transaction/{id}', [TransactionController::class, 'edit']);
-Route::get('/transaction-detail/{id}', [TransactionController::class, 'show']);
-Route::put('/transaction/{id}', [TransactionController::class, 'update']);
-Route::delete('/transaction/{id}', [TransactionController::class, 'destroy']);
+// Route::get('/transactions', [TransactionController::class, 'index']);
+// Route::get('/transaction-create', [TransactionController::class, 'create']);
+// Route::post('/transactions', [TransactionController::class, 'store']);
+// Route::get('/transaction/{id}', [TransactionController::class, 'edit']);
+// Route::get('/transaction-detail/{id}', [TransactionController::class, 'show']);
+// Route::put('/transaction/{id}', [TransactionController::class, 'update']);
+// Route::delete('/transaction/{id}', [TransactionController::class, 'destroy']);
 
-Route::get('/transactionDetails', [TransactionDetailController::class, 'index']);
-Route::get('/transactionDetail-create', [TransactionDetailController::class, 'create']);
-Route::post('/transactionDetails', [TransactionDetailController::class, 'store']);
-Route::get('/transactionDetail/{id}', [TransactionDetailController::class, 'edit']);
-Route::get('/transactionDetail-detail/{id}', [TransactionDetailController::class, 'show']);
-Route::put('/transactionDetail/{id}', [TransactionDetailController::class, 'update']);
-Route::delete('/transactionDetail/{id}', [TransactionDetailController::class, 'destroy']);
+// Route::get('/transactionDetails', [TransactionDetailController::class, 'index']);
+// Route::get('/transactionDetail-create', [TransactionDetailController::class, 'create']);
+// Route::post('/transactionDetails', [TransactionDetailController::class, 'store']);
+// Route::get('/transactionDetail/{id}', [TransactionDetailController::class, 'edit']);
+// Route::get('/transactionDetail-detail/{id}', [TransactionDetailController::class, 'show']);
+// Route::put('/transactionDetail/{id}', [TransactionDetailController::class, 'update']);
+// Route::delete('/transactionDetail/{id}', [TransactionDetailController::class, 'destroy']);
 

@@ -12,11 +12,12 @@ class Product extends Model
     protected $fillable = [
         'barcode_number',
         'product_name',
+        'supplier_id',
         'buy_price',
         'sell_price'
     ];
 
-    public function Supplier() {
+    public function supplier() {
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }
 }
